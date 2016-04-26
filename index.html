@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <title>My TODO App</title>
+</head>
+<body ng-app="form" ng-controller="FormController as form">
+    <h1 id="heading">todos</h1>
+<div class="todoLayer">
+    <div class="userData">
+        <input type="text" id="input" ng-model="userInput" placeholder="What needs to be done?" ng-keypress="checkIfEnterKeyPressed($event,userInput)" ng-required/>
+    </div>
+    <div id="notification">
+    </div>
+</div>
+</body>
+</html>
