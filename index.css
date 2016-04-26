@@ -1,8 +1,8 @@
 #heading{
+    text-align: center;
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
     font-size:xx-large;
     font-weight: 100;
-    text-align: center;
 }
 
 body{
@@ -15,25 +15,34 @@ body{
 }
 
 .todoLayer{
-    background-color:lightgray;
     height: 500px;
     width: 500px;
     margin: auto;
+    background-color:lightgray;
 }
 
 #input{
-    height: 50px;
+    height: 40px;
     width: 450px;
-}
-#notification {
-    height: 50px;
-    width: 400px;
-    margin-top: 2%;
 }
 
-#todoList{
-    background-color: whitesmoke;
-    height: 30px;
+#todoData,tr,th {
+    width:450px;
+    height: 50px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #f5f5f5;
+}
+
+#todoData{
     width: 450px;
-    margin-left: 5%;
+    margin: auto;
+}
+
+#clearList{
+    height:30px;
+    width: 100px;
+    font-size: inherit;
+    margin-left:102%;
+    background-color: red;
 }

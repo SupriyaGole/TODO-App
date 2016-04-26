@@ -1,19 +1,31 @@
 var app;
-app = angular.module('form',[]);
-app.controller('FormController',['$scope',function($scope){
-    $scope.checkIfEnterKeyPressed = function (event,userInput) {
-        var keyCode = event.keyCode;
-        if(keyCode==13){
-            var notification = document.getElementById("notification"); //todo list div
-            var node = document.createElement("div");   //every element in todo list as div
-            node.setAttribute("id","todoList"); //style to every div of item
-            var tagToadd = document.createElement("ul"); //value in div
-            var input = document.createTextNode(userInput); //user entered input
-            tagToadd.appendChild(input);
-            node.appendChild(tagToadd);
-            notification.appendChild(node);
-            document.getElementById("input").value=""; //clear input box after every submission of item
-        }
-    }
-}]);
+var list = [];
+app = angular.module('TodoApp', []);
 
+app.service('StorageService', function () {
+    this.store = function ($scope,RetrieveServices) {
+        var keycode = event.keyCode;
+        if(keycode==13) {
+            list.push($scope.userInput);
+            localStorage.setItem($scope.userInput, list.shift());
+            document.getElementById("input").value="";
+            RetrieveServices.retrieve($scope);
+        }
+    };
+});
+
+app.service('RetrieveServices',function () {
+    this.retrieve = function ($scope) {
+        $scope.todoList = localStorage;
+    };
+});
+
+app.controller('TodoController', function ($scope, StorageService,RetrieveServices) {
+    $scope.save = function () {
+        StorageService.store($scope,RetrieveServices);
+    };
+
+    $scope.clear = function () {
+        localStorage.clear();
+    };
+});

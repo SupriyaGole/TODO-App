@@ -6,13 +6,22 @@
     <link rel="stylesheet" href="./index.css">
     <title>My TODO App</title>
 </head>
-<body ng-app="form" ng-controller="FormController as form">
-    <h1 id="heading">todos</h1>
+<body ng-app="TodoApp" ng-controller="TodoController as TC">
+<h1 id="heading">todos</h1>
 <div class="todoLayer">
     <div class="userData">
-        <input type="text" id="input" ng-model="userInput" placeholder="What needs to be done?" ng-keypress="checkIfEnterKeyPressed($event,userInput)" ng-required/>
+        <input type="text" id="input" ng-model="userInput" placeholder="What needs to be done?"
+               ng-keypress="save()" ng-required/>
     </div>
-    <div id="notification">
+     <button id="clearList" ng-click="clear()">Clear All</button>
+    <div id="notification" ng-show="todoList.length">
+        <table id="todoData">
+            <tr ng-repeat="item in todoList">
+                <td>
+                    {{item}}
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>
