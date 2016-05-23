@@ -2,8 +2,8 @@
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-    <link rel="stylesheet" href="./index.css">
+    <script type="text/javascript" src="../scripts/app.js"></script>
+    <link rel="stylesheet" href="../stylesheet/index.css">
     <title>My TODO App</title>
 </head>
 <body ng-app="TodoApp" ng-controller="TodoController as TC">
@@ -13,12 +13,19 @@
         <input type="text" id="input" ng-model="userInput" placeholder="What needs to be done?"
                ng-keypress="save()" ng-required/>
     </div>
-     <button id="clearList" ng-click="clear()">Clear All</button>
     <div id="notification" ng-show="todoList.length">
         <table id="todoData">
-            <tr ng-repeat="item in todoList">
+            <tr ng-repeat="item in todoList track by $index">
                 <td>
+                    <input type="checkbox" id="checkButton">
+                </td>
+                <td id="1stPart">
                     {{item}}
+                </td>
+                <td ng-mouseover = "showClear()" ng-mouseleave = "hideShow()">
+                    <div ng-show="canShow">
+                        <img src="../../cross.png" id= "clear" ng-click = "deleteItem(this,item)"/>
+                    </div>
                 </td>
             </tr>
         </table>
